@@ -64,13 +64,21 @@ let makeResponsive = () => {
                   .attr(`transform`, `translate(0, ${graphHeight})`)
                   .call(bottomaxis);
 
+                  // X-Axis labels
         chartGroup.append('text')
-           .attr('transform', 'rotate(-90)')
-           .attr('y', 0 - margin.left - 50)
-           .attr('x', 0 - (graphHeight / 2) - 50)
-           .attr('dy', '1em')
-           .classed('axis-text', true)
-           .text('Average Household Income');
+                  .attr(`transform`, `translate(${graphWidth/2}, ${graphHeight + margin.top - 5})`)
+                  .style('text-achor', 'middle')
+                  .text('Married Population')
+
+                  // Y-Axis labels
+        chartGroup.append('text')
+                  .attr('transform', 'rotate(-90)')
+                  .attr('y', 0 - margin.left - 50)
+                  .attr('x', 0 - (graphHeight / 2) - 50)
+                  .attr('dy', '1em')
+                  .classed('axis-text', true)
+                  .text('Average Household Income');
+
       }
   })
 
