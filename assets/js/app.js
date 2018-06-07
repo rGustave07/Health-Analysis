@@ -8,7 +8,7 @@ let makeResponsive = () => {
 
   let svgArea = d3.select("body").select("svg");
 
-  let svgWidth = window.innerWidth;
+  let svgWidth = window.innerWidth - 100;
   let svgHeight = window.innerHeight;
 
   margin = {
@@ -28,7 +28,7 @@ let makeResponsive = () => {
 
 
   let chartGroup = svg.append("g")
-                      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+                      .attr('transform', `translate(${margin.left + 50}, ${margin.top})`)
 
 
   //Chart Set, read in Data
@@ -64,16 +64,15 @@ let makeResponsive = () => {
                   .attr(`transform`, `translate(0, ${graphHeight})`)
                   .call(bottomaxis);
 
-
+        chartGroup.append('text')
+           .attr('transform', 'rotate(-90)')
+           .attr('y', 0 - margin.left - 50)
+           .attr('x', 0 - (graphHeight / 2) - 50)
+           .attr('dy', '1em')
+           .classed('axis-text', true)
+           .text('Average Household Income');
       }
   })
-
-
-
-
-
-
-
 
 }
 
