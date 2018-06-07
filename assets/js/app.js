@@ -44,7 +44,7 @@ let makeResponsive = () => {
 
         // Developing scales
         let xPScale = d3.scaleLinear()
-                       .domain([0, d3.max(data.map( d => {d.popMarried}))])
+                       .domain([0, d3.max(data.map( d => d.popMarried ))])
                        .range([0, graphWidth])
 
         let yPScale = d3.scaleLinear()
