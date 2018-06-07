@@ -36,7 +36,35 @@ let makeResponsive = () => {
       if (error) {
         console.log(error);
       } else {
-        console.log(data);
+        // Casting the data to numbers
+        data.forEach( element => {
+          element.popMarried = +element.popMarried;
+          element.avgHouseholdIncome = +element.avgHouseholdIncome;
+        })
+
+        // Developing scales
+        let xPScale = d3.scaleLinear()
+                       .domain([0, d3.max(data.map( d => {d.popMarried}))])
+                       .range([0, graphWidth])
+
+        let yPScale = d3.scaleLinear()
+                       .domain([0, d3.max(data.map( d=> d.avgHouseholdIncome))])
+                       .range([graphHeight, 0])
+
+
+        let bottomaxis = d3.axisBottom(xPScale);
+        let leftaxis = d3.axisLeft(yPScale);
+
+        chartGroup.append('g')
+                  .classed('axis', true)
+                  .call(leftaxis);
+
+        chartGroup.append('g')
+                  .classed('axis', true)
+                  .attr(`transform`, `translate(0, ${graphHeight})`)
+                  .call(bottomaxis);
+
+
       }
   })
 
